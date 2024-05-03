@@ -20,6 +20,7 @@ val GreenishYellow = Color(0xFFA8C920)
 val EmeraldGreen = Color(0xFF50C878)
 val DiamondBlueBackground = Color(0xFFADD8E6)
 val LightGray = Color(0xFFD3D3D3)
+val OrangeColor = Color(0xFFFFA500)
 val BlueTintedWhite = Color(0xFFF0F8FF)
 val PureBlack = Color(0xFF000000)
 

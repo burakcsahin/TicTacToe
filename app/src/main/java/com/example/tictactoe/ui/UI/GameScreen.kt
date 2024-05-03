@@ -77,7 +77,7 @@ fun GameScreen(){
                 .background(BlueTintedWhite),
             contentAlignment = Alignment.Center
         ){
-
+            Board()
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
