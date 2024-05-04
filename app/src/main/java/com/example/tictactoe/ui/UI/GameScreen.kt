@@ -1,5 +1,9 @@
 package com.example.tictactoe.ui.UI
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -42,6 +46,7 @@ import com.example.tictactoe.ui.UI.Theme.Purple700
 import com.example.tictactoe.ui.UI.Theme.Purple80
 import com.example.tictactoe.ui.UI.Theme.Teal200
 import com.example.tictactoe.State
+import com.example.tictactoe.VictoryVariant
 
 @Composable
 
@@ -101,9 +106,9 @@ fun GameScreen(
                                 .fillMaxWidth()
                                 .aspectRatio(1f)
                                 .clickable {
-                                           viewModel.onAction(
-                                               PlayerActions.BoardTapped(cellNo)
-                                           )
+                                    viewModel.onAction(
+                                        PlayerActions.BoardTapped(cellNo)
+                                    )
                                 },
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
@@ -117,7 +122,19 @@ fun GameScreen(
                     }
                 }
             }
-
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                AnimatedVisibility(
+                    visible = state.hasWon,
+                ) {
+                    VictoryIndicator(state = state)
+                }
+            }
 
         }
         Row(
@@ -147,6 +164,20 @@ fun GameScreen(
     }
 }
 
+@Composable
+fun VictoryIndicator(state: State) {
+    when(state.victoryVariant){
+        VictoryVariant.H1 -> horizontalWin1()
+        VictoryVariant.H2 -> horizontalWin2()
+        VictoryVariant.H3 -> horizontalWin3()
+        VictoryVariant.V1 -> verticalWin1()
+        VictoryVariant.V2 -> verticalWin2()
+        VictoryVariant.V3 -> verticalWin3()
+        VictoryVariant.D1 -> diogonalWin1()
+        VictoryVariant.D2 -> diogonalWin2()
+        VictoryVariant.NONE -> {}
+    }
+}
 
 @Preview
 @Composable

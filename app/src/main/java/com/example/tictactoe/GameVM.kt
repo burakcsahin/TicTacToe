@@ -54,7 +54,7 @@ class GameVM: ViewModel() {
             boardItems[cellNo] = BoardBoxValue.OVAL
             if(victoryCheck(BoardBoxValue.OVAL)){
                 state = state.copy(
-                    hintText = "'X' WON!!",
+                    hintText = "'O' WON!!",
                     ovalPlayerCount = state.ovalPlayerCount + 1,
                     currTurn = BoardBoxValue.NONE,
                     hasWon = true
@@ -74,7 +74,7 @@ class GameVM: ViewModel() {
             boardItems[cellNo] = BoardBoxValue.CARPI
             if(victoryCheck(BoardBoxValue.CARPI)){
                 state = state.copy(
-                    hintText = "'O' WON!!",
+                    hintText = "'X' WON!!",
                     carpiPlayerCount = state.carpiPlayerCount + 1,
                     currTurn = BoardBoxValue.NONE,
                     hasWon = true
