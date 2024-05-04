@@ -131,7 +131,11 @@ fun GameScreen(
                 fontStyle = FontStyle.Normal
             )
             Button(
-                onClick = { /* TODO*/},
+                onClick = {
+                          viewModel.onAction(
+                              PlayerActions.PlayAgainButtonClicked
+                          )
+                },
                 shape = RoundedCornerShape(5.dp),
                 elevation = ButtonDefaults.buttonElevation(5.dp),
                 colors = ButtonDefaults.buttonColors()

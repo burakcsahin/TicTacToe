@@ -27,9 +27,23 @@ class GameVM: ViewModel() {
 
             }
             PlayerActions.PlayAgainButtonClicked -> {
-
+                gameRes()
             }
         }
+    }
+
+    private fun gameRes() {
+        for ((key, _) in boardItems) {
+            boardItems[key] = BoardBoxValue.NONE
+        }
+        state = state.copy(
+            hintText = "Turn of Player 'O'",
+            currTurn = BoardBoxValue.OVAL,
+            victoryVariant = VictoryVariant.NONE,
+            hasWon = false
+        )
+
+
     }
 
     private fun addValueToBoard(cellNo: Int) {
