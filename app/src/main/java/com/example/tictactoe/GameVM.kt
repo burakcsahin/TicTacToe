@@ -52,7 +52,15 @@ class GameVM: ViewModel() {
         }
         if(state.currTurn == BoardBoxValue.OVAL){
             boardItems[cellNo] = BoardBoxValue.OVAL
-            if(boardFull()){
+            if(victoryCheck(BoardBoxValue.OVAL)){
+                state = state.copy(
+                    hintText = "'X' WON!!",
+                    ovalPlayerCount = state.ovalPlayerCount + 1,
+                    currTurn = BoardBoxValue.NONE,
+                    hasWon = true
+                )
+            }
+            else if(boardFull()){
                 state = state.copy(
                     hintText = "Draw",
                     drawCount = state.drawCount + 1
@@ -64,7 +72,15 @@ class GameVM: ViewModel() {
             }
         }else if(state.currTurn == BoardBoxValue.CARPI){
             boardItems[cellNo] = BoardBoxValue.CARPI
-            if(boardFull()) {
+            if(victoryCheck(BoardBoxValue.CARPI)){
+                state = state.copy(
+                    hintText = "'O' WON!!",
+                    carpiPlayerCount = state.carpiPlayerCount + 1,
+                    currTurn = BoardBoxValue.NONE,
+                    hasWon = true
+                )
+            }
+            else if(boardFull()) {
                 state = state.copy(
                     hintText = "Draw",
                     drawCount = state.drawCount + 1
@@ -77,6 +93,48 @@ class GameVM: ViewModel() {
             }
 
         }
+    }
+
+    private fun victoryCheck(boardVal: BoardBoxValue): Boolean {
+        when{
+            boardItems[1] == boardVal && boardItems[2] == boardVal && boardItems[3] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.H1)
+                return true
+            }
+            boardItems[4] == boardVal && boardItems[5] == boardVal && boardItems[6] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.H2)
+                return true
+            }
+            boardItems[7] == boardVal && boardItems[8] == boardVal && boardItems[9] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.H3)
+                return true
+            }
+            boardItems[1] == boardVal && boardItems[2] == boardVal && boardItems[3] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.H1)
+                return true
+            }
+            boardItems[1] == boardVal && boardItems[4] == boardVal && boardItems[7] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.V1)
+                return true
+            }
+            boardItems[2] == boardVal && boardItems[5] == boardVal && boardItems[8] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.V2)
+                return true
+            }
+            boardItems[3] == boardVal && boardItems[6] == boardVal && boardItems[9] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.V3)
+                return true
+            }
+            boardItems[1] == boardVal && boardItems[5] == boardVal && boardItems[9] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.D1)
+                return true
+            }
+            boardItems[3] == boardVal && boardItems[5] == boardVal && boardItems[7] == boardVal ->{
+                state = state.copy(victoryVariant = VictoryVariant.D2)
+                return true
+            }
+        }
+        return false
     }
 
     private fun boardFull(): Boolean {
