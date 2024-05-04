@@ -38,16 +38,37 @@ class GameVM: ViewModel() {
         }
         if(state.currTurn == BoardBoxValue.OVAL){
             boardItems[cellNo] = BoardBoxValue.OVAL
-            state = state.copy(
-                hintText = "Player 'X' turn",
-                currTurn = BoardBoxValue.CARPI
-            )
+            if(boardFull()){
+                state = state.copy(
+                    hintText = "Draw",
+                    drawCount = state.drawCount + 1
+                )
+            }else{
+                state = state.copy(
+                    hintText = "Turn of Player 'X'",
+                    currTurn = BoardBoxValue.CARPI)
+            }
         }else if(state.currTurn == BoardBoxValue.CARPI){
             boardItems[cellNo] = BoardBoxValue.CARPI
-            state = state.copy(
-                hintText = "Player 'O' turn",
-                currTurn = BoardBoxValue.OVAL
-            )
+            if(boardFull()) {
+                state = state.copy(
+                    hintText = "Draw",
+                    drawCount = state.drawCount + 1
+                )
+            }else{
+                state = state.copy(
+                    hintText = "Turn of Player 'O'",
+                    currTurn = BoardBoxValue.OVAL
+                )
+            }
+
         }
+    }
+
+    private fun boardFull(): Boolean {
+        if(boardItems.containsValue(BoardBoxValue.NONE)){
+            return false
+        }
+        return true
     }
 }

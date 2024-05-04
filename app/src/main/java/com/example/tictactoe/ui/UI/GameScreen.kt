@@ -64,9 +64,9 @@ fun GameScreen(
 
         )
         {
-            Text(text = "Player O : 0", fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(end = 8.dp))
-            Text(text = "Draw : 0", fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(end = 8.dp))
-            Text(text = "Player X : 0", fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(end = 8.dp))
+            Text(text = "Player O : ${state.ovalPlayerCount}", fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(end = 8.dp))
+            Text(text = "Draw : ${state.drawCount}", fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(end = 8.dp))
+            Text(text = "Player X : ${state.carpiPlayerCount}", fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(end = 8.dp))
         }
         Text(
             text = "3T: Tic Tac Toe",
@@ -126,7 +126,7 @@ fun GameScreen(
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             Text(
-                text = "Turn of Player 'O'",
+                text = state.hintText,
                 fontSize = 22.sp,
                 fontStyle = FontStyle.Normal
             )

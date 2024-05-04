@@ -4,7 +4,7 @@ data class State(
     val ovalPlayerCount: Int = 0,
     val carpiPlayerCount: Int = 0,
     val drawCount: Int = 0,
-    val hintText: String = "Player 'O' turn",
+    val hintText: String = "Turn of Player 'O'",
     val currTurn: BoardBoxValue = BoardBoxValue.OVAL,
     val victoryVariant: VictoryVariant = VictoryVariant.NONE,
     val hasWon: Boolean = false
